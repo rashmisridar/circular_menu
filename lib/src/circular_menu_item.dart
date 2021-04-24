@@ -4,8 +4,11 @@ class CircularMenuItem extends StatelessWidget {
   /// if icon and animatedIcon are passed, icon will be ignored
   final String icon;
   final Color color;
+
   final Color iconColor;
   final VoidCallback onTap;
+  final double height;
+  final double width;
   final double iconSize;
   final double padding;
   final double margin;
@@ -31,6 +34,8 @@ class CircularMenuItem extends StatelessWidget {
     @required this.onTap,
     this.icon,
     this.color,
+    this.height,
+    this.width,
     this.iconSize = 30,
     this.boxShadow,
     this.iconColor,
@@ -76,6 +81,8 @@ class CircularMenuItem extends StatelessWidget {
                       image: AssetImage(
                         icon,
                       ),
+                      height: height,
+                      width: width,
                       color: iconColor ?? Colors.white,
                     )
                   /* Icon(

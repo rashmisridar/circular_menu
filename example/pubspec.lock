@@ -11,10 +11,12 @@ packages:
   circular_menu:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
-    version: "1.1.1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "74e1019302e49bf9bcca60f7909fcc4f2d389ad9"
+      url: "https://github.com/rashmisridar/circular_menu.git"
+    source: git
+    version: "1.1.2"
   collection:
     dependency: transitive
     description:
