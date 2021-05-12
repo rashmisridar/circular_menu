@@ -8,7 +8,12 @@ dependencies:
   cupertino_icons: ^0.1.2
   circular_menu:
     path: ../
+  animated_bottom_navigation_bar:
+    git:
+      url: https://github.com/rashmisridar/animated-bottom-navigation-bar-flutter.git
 
 # The following section is specific to Flutter.
 flutter:
   uses-material-design: true
+  assets:
+    - assets/.

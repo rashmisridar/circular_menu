@@ -25,7 +25,8 @@ class CircularMenuItem extends StatelessWidget {
   final Color badgeColor;
 
   /// if animatedIcon and icon are passed, icon will be ignored
-  final AnimatedIcon animatedIcon;
+  //final AnimatedIcon animatedIcon;
+  final Image iconMenu;
 
   /// creates a menu item .
   /// [onTap] must not be null.
@@ -39,7 +40,8 @@ class CircularMenuItem extends StatelessWidget {
     this.iconSize = 30,
     this.boxShadow,
     this.iconColor,
-    this.animatedIcon,
+    /* this.animatedIcon,*/
+    this.iconMenu,
     this.padding = 10,
     this.margin = 10,
     this.enableBadge = false,
@@ -76,10 +78,10 @@ class CircularMenuItem extends StatelessWidget {
           child: InkWell(
             child: Padding(
               padding: EdgeInsets.all(padding),
-              child: animatedIcon == null
+              child: iconMenu == null
                   ? Image(
                       image: AssetImage(
-                        icon,
+                        'assets/ic_car.png',
                       ),
                       height: height,
                       width: width,
@@ -90,7 +92,14 @@ class CircularMenuItem extends StatelessWidget {
                       size: iconSize,
                       color: iconColor ?? Colors.white,
                     )*/
-                  : animatedIcon,
+                  : Image(
+                      image: AssetImage(
+                        'assets/ic_car.png',
+                      ),
+                      height: height,
+                      width: width,
+                      color: iconColor ?? Colors.white,
+                    ),
             ),
             onTap: onTap,
           ),

@@ -10,6 +10,7 @@ class CircularMenu extends StatefulWidget {
 
   /// list of CircularMenuItem contains at least two items.
   final List<CircularMenuItem> items;
+  final String iconMenu;
 
   /// menu alignment
   final AlignmentGeometry alignment;
@@ -51,6 +52,7 @@ class CircularMenu extends StatefulWidget {
   /// [items] must not be null and it must contains two elements at least.
   CircularMenu({
     @required this.items,
+    this.iconMenu,
     this.alignment = Alignment.bottomCenter,
     this.radius = 100,
     this.backgroundWidget,
@@ -64,7 +66,7 @@ class CircularMenu extends StatefulWidget {
     this.toggleButtonPadding = 10,
     this.toggleButtonSize = 40,
     this.toggleButtonIconColor,
-    this.toggleButtonAnimatedIconData = AnimatedIcons.menu_close,
+    this.toggleButtonAnimatedIconData = AnimatedIcons.add_event,
     this.key,
     this.startingAngleInRadian,
     this.endingAngleInRadian,
@@ -111,6 +113,10 @@ class CircularMenuState extends State<CircularMenu>
           curve: widget.curve,
           reverseCurve: widget.reverseCurve),
     );
+    _animationController.addStatusListener((status) {
+      print('status ${status}');
+    });
+    _animationController.forward();
     _itemsCount = widget.items.length;
     super.initState();
   }
@@ -221,32 +227,51 @@ class CircularMenuState extends State<CircularMenu>
   }
 
   Widget _buildMenuButton(BuildContext context) {
+    print('build menu button ${_animationController.status}');
     return Positioned.fill(
       child: Align(
         alignment: widget.alignment,
         child: CircularMenuItem(
-          icon: null,
-          margin: widget.toggleButtonMargin,
-          color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
-          padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
-              widget.toggleButtonPadding,
-          onTap: () {
-            _animationController.status == AnimationStatus.dismissed
-                ? (_animationController).forward()
-                : (_animationController).reverse();
-            if (widget.toggleButtonOnPressed != null) {
-              widget.toggleButtonOnPressed();
-            }
-          },
-          boxShadow: widget.toggleButtonBoxShadow,
-          animatedIcon: AnimatedIcon(
-            icon:
-                widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
+            icon: null,
+            margin: widget.toggleButtonMargin,
+            color: widget.toggleButtonColor ?? Theme.of(context).primaryColor,
+            padding: (-_animation.value * widget.toggleButtonPadding * 0.5) +
+                widget.toggleButtonPadding,
+            onTap: () {
+              _animationController.status == AnimationStatus.dismissed
+                  ? (_animationController).forward()
+                  : (_animationController).reverse();
+              if (widget.toggleButtonOnPressed != null) {
+                widget.toggleButtonOnPressed();
+              }
+            },
+            boxShadow: widget.toggleButtonBoxShadow,
+            /*   animatedIcon: AnimatedIcon(
+            icon: _animationController.status ?AnimatedIcons.home,
+            //  widget.toggleButtonAnimatedIconData, //AnimatedIcons.menu_close,
             size: widget.toggleButtonSize,
             color: widget.toggleButtonIconColor ?? Colors.white,
             progress: _animation,
-          ),
-        ),
+          ),*/
+            iconMenu: _animationController.status == AnimationStatus.completed
+                ? Image(
+                    image: AssetImage(
+                      'assets/ic_car.png',
+                    ),
+                    height: 60,
+                    width: 60,
+                    color: Colors.blue,
+                  )
+                : Image(
+                    image: AssetImage(
+                      'assets/ic_car.png',
+                    ),
+                    height: 60,
+                    width: 60,
+                    color: Colors.white,
+                  )
+            //iconColor: ,
+            ),
       ),
     );
   }

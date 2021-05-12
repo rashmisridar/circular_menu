@@ -13,6 +13,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _colorName = 'No';
   Color _color = Colors.black;
+  GlobalKey<CircularMenuState> key = GlobalKey<CircularMenuState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,28 +28,18 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.pink,
           title: Text('Flutter Circular Menu'),
         ),
-        body: CircularMenu(
+        floatingActionButton: CircularMenu(
           alignment: Alignment.bottomCenter,
-          backgroundWidget: Center(
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(color: Colors.black, fontSize: 28),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: _colorName,
-                    style:
-                        TextStyle(color: _color, fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(text: ' button is clicked.'),
-                ],
-              ),
-            ),
-          ),
           toggleButtonColor: Colors.pink,
           items: [
             CircularMenuItem(
-                icon: Icons.home,
-                color: Colors.green,
+                icon: 'assets/ic_car.png',
+                height: 30,
+                width: 30, //Icons.home,,
+                color: Color(0xFF31303B),
+                margin: 60.0,
+                padding: 10,
+                iconSize: 20,
                 onTap: () {
                   setState(() {
                     _color = Colors.green;
@@ -51,15 +47,20 @@ class _MyAppState extends State<MyApp> {
                   });
                 }),
             CircularMenuItem(
-                icon: Icons.search,
-                color: Colors.blue,
+                height: 30,
+                width: 30,
+                icon: 'assets/ic_yatch.png',
+                color: Color(0xFF31303B),
+                margin: 60.0,
+                padding: 10,
+                iconSize: 20,
                 onTap: () {
                   setState(() {
                     _color = Colors.blue;
                     _colorName = 'Blue';
                   });
                 }),
-            CircularMenuItem(
+            /*  CircularMenuItem(
                 icon: Icons.settings,
                 color: Colors.orange,
                 onTap: () {
@@ -76,10 +77,16 @@ class _MyAppState extends State<MyApp> {
                     _color = Colors.purple;
                     _colorName = 'Purple';
                   });
-                }),
+                }),*/
             CircularMenuItem(
-                icon: Icons.notifications,
-                color: Colors.brown,
+                height: 30,
+                width: 30,
+                icon: 'assets/ic_jet.png',
+                color: Color(0xFF31303B),
+                margin: 60.0,
+                padding: 10,
+                iconSize: 20,
+                //padding: 10.0,
                 onTap: () {
                   setState(() {
                     _color = Colors.brown;
